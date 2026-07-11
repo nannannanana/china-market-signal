@@ -590,6 +590,12 @@ textarea:focus,
   justify-content: space-between;
 }
 
+.report-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .report-topline strong {
   font-size: 14px;
 }
@@ -599,6 +605,26 @@ textarea:focus,
   color: var(--muted);
   font-size: 12px;
   font-weight: 900;
+}
+
+.report-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  border: 1px solid rgba(25, 103, 210, 0.35);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.report-link:hover {
+  background: rgba(25, 103, 210, 0.1);
 }
 
 .report-item h3 {
@@ -1609,6 +1635,7 @@ function buildTopics(sentences, rankedSectors) {
       title: cleanSentence.length > 58 ? `${cleanSentence.slice(0, 58)}...` : cleanSentence,
       sector: matched.name,
       url: link,
+      timeValue: extractNewsTime(sentence),
       weight,
     });
   });
@@ -1616,7 +1643,7 @@ function buildTopics(sentences, rankedSectors) {
   const deduped = [];
   const seen = new Set();
   topics
-    .sort((a, b) => b.weight - a.weight)
+    .sort((a, b) => b.timeValue - a.timeValue || b.weight - a.weight)
     .forEach((topic) => {
       const key = `${topic.title}-${topic.sector}`;
       if (!seen.has(key)) {
@@ -1626,6 +1653,13 @@ function buildTopics(sentences, rankedSectors) {
     });
 
   return deduped.slice(0, 9);
+}
+
+function extractNewsTime(text) {
+  const match = text.match(/(\d{4})-(\d{1,2})-(\d{1,2})[ T](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?/);
+  if (!match) return 0;
+  const [, year, month, day, hour, minute, second = "0"] = match.map(Number);
+  return new Date(year, month - 1, day, hour, minute, second).getTime() || 0;
 }
 
 function buildTradePlan(score, risk, topSectors) {
@@ -1779,7 +1813,10 @@ function renderCompanyReports(rankedSectors) {
         <article class="report-item">
           <div class="report-topline">
             <strong>${report.company}</strong>
-            <span>${report.code}</span>
+            <div class="report-actions">
+              <span>${report.code}</span>
+              ${renderReportLinks(report.links)}
+            </div>
           </div>
           <h3>${report.title}</h3>
           <div class="report-meta">
@@ -1810,11 +1847,42 @@ function buildCompanyReports(rankedSectors) {
           date,
           rating,
           title: `${company}：${sector.name}景气跟踪与催化验证`,
-          summary: `${sector.catalyst}。后续重点看成交确认、公告订单和业绩兑现，风险在于${sector.risk}。`,
+          summary: `Summary：${company}当前跟随${sector.name}主线，核心看${sector.catalyst}，同时警惕${sector.risk}。`,
+          links: buildReportLinks(company, code),
         };
       }),
     )
     .slice(0, 10);
+}
+
+function buildReportLinks(company, code) {
+  const keyword = `${company} ${code}`.trim();
+  return [
+    {
+      label: "研",
+      title: "公司研报",
+      url: `https://so.eastmoney.com/web/s?keyword=${encodeURIComponent(`${keyword} 研报`)}`,
+    },
+    {
+      label: "告",
+      title: "公司公告",
+      url: `https://www.cninfo.com.cn/new/fulltextSearch?notautosubmit=&keyWord=${encodeURIComponent(code || company)}`,
+    },
+    {
+      label: "讯",
+      title: "公司资讯",
+      url: `https://www.baidu.com/s?wd=${encodeURIComponent(`${keyword} 股票 最新消息`)}`,
+    },
+  ];
+}
+
+function renderReportLinks(links) {
+  return links
+    .map(
+      (link) =>
+        `<a class="report-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(link.title)}" aria-label="${escapeHtml(link.title)}">${escapeHtml(link.label)}</a>`,
+    )
+    .join("");
 }
 
 function parseStock(stock) {
