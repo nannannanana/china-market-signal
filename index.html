@@ -1,465 +1,929 @@
-<!DOCTYPE html> <html lang=zh-CN style><!--
- Page saved with SingleFile 
- url: c:/Users/woshi/Documents/Codex/2026-07-10/bang/outputs/china-market-signal-standalone.html 
- saved date: Sat Jul 11 2026 08:23:31 GMT+0800 (中国标准时间)
---><meta charset=utf-8>
-<meta name=viewport content="width=device-width, initial-scale=1">
-<title>A股新闻热度研判台</title>
-<style>:root{color-scheme:light;--bg:#f5f7fa;--panel:#ffffff;--panel-soft:#eef3f8;--ink:#16202a;--muted:#687684;--line:#dce3ea;--blue:#1967d2;--green:#168257;--red:#c24136;--amber:#b16900;--cyan:#087e8b;--shadow:0 18px 45px rgba(30,45,62,0.1)}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(180deg,rgba(25,103,210,0.08),transparent 260px),var(--bg);color:var(--ink);font-family:Inter,"Segoe UI","Microsoft YaHei","PingFang SC",Arial,sans-serif}button,input,textarea{font:inherit}button{border:0;cursor:pointer}svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:0 0 auto}.svg-sprite{position:absolute;width:0;height:0;overflow:hidden}.app{width:min(1540px,calc(100% - 32px));margin:0 auto;padding:24px 0 36px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 0 22px}.eyebrow{margin:0 0 6px;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:0;text-transform:uppercase}h1,h2{margin:0;letter-spacing:0}h1{font-size:clamp(28px,4vw,44px);line-height:1.05}h2{font-size:18px;line-height:1.2}.top-actions{display:flex;align-items:center;gap:12px}.date-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;color:var(--muted);font-size:13px;font-weight:800}.date-line span{display:inline-flex;align-items:center;min-height:28px;padding:0 9px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,0.72)}.date-line span:last-child{color:var(--blue)}.risk-note,.date-input,.search-box{min-height:40px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,0.86)}.risk-note{display:inline-flex;align-items:center;gap:8px;padding:0 12px;color:var(--red);font-weight:800}.date-input{padding:0 12px;color:var(--ink)}.workspace{display:grid;grid-template-columns:minmax(320px,420px) minmax(0,1fr);gap:18px;align-items:start}.input-panel,.panel,.score-card{border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,0.94);box-shadow:var(--shadow)}.input-panel{position:sticky;top:16px;padding:18px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}.section-head.compact{margin-bottom:12px}.icon-btn,.ghost-btn,.secondary-btn,.primary-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;border-radius:8px;transition:transform 0.15s ease,background 0.15s ease,border-color 0.15s ease}.icon-btn,.ghost-btn{width:42px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}.primary-btn{flex:1;padding:0 18px;background:var(--ink);color:#fff;font-weight:800}.secondary-btn{padding:0 14px;border:1px solid rgba(25,103,210,0.28);background:rgba(25,103,210,0.09);color:var(--blue);font-weight:900;white-space:nowrap}.icon-btn:hover,.ghost-btn:hover,.secondary-btn:hover,.primary-btn:hover{transform:translateY(-1px)}.secondary-btn:disabled{cursor:wait;opacity:0.66;transform:none}.source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:14px}.source-tile{display:flex;align-items:center;gap:8px;min-height:42px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-weight:800}.source-tile input{width:16px;height:16px;accent-color:var(--blue)}.source-tile:has(input:checked){border-color:rgba(25,103,210,0.42);background:rgba(25,103,210,0.08);color:var(--blue)}.field-label{display:block;margin:8px 0 8px;color:var(--muted);font-size:13px;font-weight:800}textarea{width:100%;min-height:420px;resize:vertical;padding:14px;border:1px solid var(--line);border-radius:8px;outline:0;background:#fbfcfd;color:var(--ink);line-height:1.62}textarea:focus,.search-box:focus-within,.date-input:focus{border-color:rgba(25,103,210,0.7);box-shadow:0 0 0 3px rgba(25,103,210,0.12)}.button-row{display:flex;gap:8px;margin-top:12px}.dashboard{display:grid;gap:18px}.score-strip{display:grid;grid-template-columns:1.25fr repeat(3,minmax(150px,0.55fr));gap:12px}.score-card{padding:16px;min-height:154px}.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-size:13px;font-weight:900}.card-head svg{color:var(--blue)}.meter{position:relative;display:grid;place-items:center;height:112px;margin-top:6px;border-radius:8px;background:conic-gradient(from 225deg,var(--red),var(--amber),var(--green),transparent 0 360deg),#eef2f6;clip-path:polygon(0 100%,0 0,100%0,100% 100%);overflow:hidden}.meter::after{content:"";position:absolute;inset:18px 24px 0;border-radius:8px 8px 0 0;background:var(--panel)}.meter-needle{position:absolute;z-index:2;bottom:16px;left:50%;width:3px;height:72px;background:var(--ink);transform-origin:bottom center;border-radius:3px;transition:transform 0.35s ease}.meter-core{position:relative;z-index:3;display:grid;place-items:center;align-self:end;min-width:112px;padding:11px 14px;margin-bottom:12px;border:1px solid var(--line);border-radius:8px;background:#fff}.meter-core strong{font-size:34px;line-height:1}.meter-core span{margin-top:4px;color:var(--muted);font-size:12px;font-weight:800}.summary-line{min-height:22px;margin-top:10px;color:var(--muted);font-size:13px;line-height:1.45}.prob-bar{height:10px;margin:25px 0 14px;border-radius:999px;background:#e9eef4;overflow:hidden}.prob-bar span{display:block;height:100%;border-radius:inherit;background:var(--green);transition:width 0.35s ease}.prob-bar.neutral span{background:var(--blue)}.prob-bar.risk span{background:var(--red)}.score-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}.grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.panel{padding:18px}.sector-bars{display:grid;gap:10px}.sector-row{display:grid;grid-template-columns:minmax(72px,108px) minmax(0,1fr) 44px;align-items:center;gap:10px;min-height:32px}.sector-name{overflow:hidden;color:var(--ink);font-size:13px;font-weight:900;text-overflow:ellipsis;white-space:nowrap}.bar-track{height:12px;border-radius:999px;background:#e9eef4;overflow:hidden}.bar-fill{display:block;height:100%;border-radius:inherit}.sector-score{color:var(--muted);font-size:12px;font-weight:900;text-align:right}.topic-list{display:grid;gap:10px;max-height:306px;overflow:auto;padding-right:4px}.topic-item{display:grid;grid-template-columns:8px 1fr auto;gap:10px;align-items:start;padding:11px 0;border-bottom:1px solid var(--line)}.topic-dot{width:8px;height:8px;margin-top:7px;border-radius:50%;background:var(--blue)}.topic-item strong{display:block;margin-bottom:5px;font-size:14px;line-height:1.35}.source-mark:hover{background:rgba(25,103,210,0.1)}.topic-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.topic-item span,.chip{color:var(--muted);font-size:12px;font-weight:800}.chip{padding:5px 8px;border:1px solid var(--line);border-radius:999px;background:var(--panel-soft);white-space:nowrap}.search-box{display:flex;align-items:center;gap:8px;width:min(310px,44vw);padding:0 11px}.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}table{width:100%;border-collapse:collapse;min-width:880px}th,td{padding:13px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{position:sticky;top:0;z-index:1;background:#f7fafc;color:var(--muted);font-size:12px;font-weight:900}td{font-size:13px;line-height:1.55}tbody tr:last-child td{border-bottom:0}.stock-tags{display:flex;flex-wrap:wrap;gap:6px}.stock-tag{padding:5px 8px;border-radius:999px;background:rgba(25,103,210,0.08);color:var(--blue);font-size:12px;font-weight:900}.plan-box,.risk-list{display:grid;gap:10px}.plan-item,.risk-item{padding:12px;border:1px solid var(--line);border-radius:8px;background:#fbfcfd}.plan-item strong,.risk-item strong{display:block;margin-bottom:6px;font-size:14px}.plan-item span,.risk-item span{color:var(--muted);font-size:13px;line-height:1.45}@media (max-width:1180px){.workspace,.score-strip{grid-template-columns:1fr}.input-panel{position:static}textarea{min-height:280px}}@media (max-width:760px){.app{width:min(100% - 20px,1540px);padding-top:12px}.topbar,.top-actions,.section-head{align-items:stretch;flex-direction:column}.top-actions{gap:8px}.grid-two,.source-grid{grid-template-columns:1fr}.search-box{width:100%}.sector-row{grid-template-columns:92px minmax(0,1fr) 38px}}</style>
-<meta name=referrer content=no-referrer><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"></head>
- <body>
- <svg class=svg-sprite aria-hidden=true>
- <symbol id=i-pulse viewBox="0 0 24 24">
- <path d="M3 12h4l2-6 4 12 3-7h5"></path>
- </symbol>
- <symbol id=i-play viewBox="0 0 24 24">
- <path d="M8 5v14l11-7z"></path>
- </symbol>
- <symbol id=i-file viewBox="0 0 24 24">
- <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
- <path d="M14 2v6h6"></path>
- </symbol>
- <symbol id=i-trash viewBox="0 0 24 24">
- <path d="M3 6h18"></path>
- <path d="M8 6V4h8v2"></path>
- <path d="M6 6l1 16h10l1-16"></path>
- </symbol>
- <symbol id=i-download viewBox="0 0 24 24">
- <path d="M12 3v12"></path>
- <path d="M7 10l5 5 5-5"></path>
- <path d="M5 21h14"></path>
- </symbol>
- <symbol id=i-shield viewBox="0 0 24 24">
- <path d="M12 3 5 6v6c0 4.4 2.8 7.7 7 9 4.2-1.3 7-4.6 7-9V6z"></path>
- </symbol>
- <symbol id=i-search viewBox="0 0 24 24">
- <circle cx=11 cy=11 r=7></circle>
- <path d="m16 16 5 5"></path>
- </symbol>
- </svg>
- <div class=app>
- <header class=topbar>
- <div>
- <p class=eyebrow>China News Market Intelligence</p>
- <h1>A股新闻热度研判台</h1>
- <div class=date-line>
- <span id=dateDisplay>研判日期：2026年7月11日 周六｜目标交易日：2026年7月13日 周一</span>
- <span id=updateStatus>每日自动更新中...</span>
- </div>
- </div>
- <div class=top-actions>
- <div class=risk-note>
- <svg><use href=#i-shield></use></svg>
- 非投资建议
- </div>
- <input id=tradeDate class=date-input type=date value=2026-07-11>
- <button id=onlineBtn class=secondary-btn disabled>
- <svg><use href=#i-download></use></svg>
- 联网更新
- </button>
- </div>
- </header>
- <main class=workspace>
- <section class=input-panel>
- <div class=section-head>
- <div>
- <p class=eyebrow>Source Matrix</p>
- <h2>新闻输入</h2>
- </div>
- <button id=sampleBtn class=icon-btn title=载入示例>
- <svg><use href=#i-file></use></svg>
- </button>
- </div>
- <div id=sourceGrid class=source-grid aria-label=新闻源>
- <label class=source-tile>
- <input type=checkbox value=xinwen checked>
- <span>新闻联播</span>
- </label>
- 
- <label class=source-tile>
- <input type=checkbox value=fangtan checked>
- <span>焦点访谈</span>
- </label>
- 
- <label class=source-tile>
- <input type=checkbox value=finance checked>
- <span>央视财经</span>
- </label>
- 
- <label class=source-tile>
- <input type=checkbox value=daily checked>
- <span>经济日报</span>
- </label>
- 
- <label class=source-tile>
- <input type=checkbox value=exchange checked>
- <span>交易所公告</span>
- </label>
- 
- <label class=source-tile>
- <input type=checkbox value=policy checked>
- <span>央行/发改委</span>
- </label>
- </div>
- <label class=field-label for=newsInput>今日新闻文本</label>
- <textarea id=newsInput spellcheck=false>新闻联播：国务院会议强调加快人工智能、低空经济、新型电力系统等战略性新兴产业发展，支持地方开展应用场景试点。
-央视财经：多地发布以旧换新和服务消费活动方案，汽车、家电、文旅消费数据环比改善。
-经济日报：新型储能、电网投资和虚拟电厂建设进入招标密集期，绿电消纳机制持续优化。
-焦点访谈：制造业数字化转型加速，人形机器人核心零部件国产化率提升。
-交易所公告：并购重组审核效率提升，半导体设备、创新药、国企改革方向披露多起产业整合案例。
-央行/发改委：保持流动性合理充裕，推动降低实体融资成本，继续支持科技创新和设备更新。
-风险线索：部分高位题材成交拥挤，海外科技出口管制和大宗商品价格波动仍需跟踪。</textarea>
- <div class=button-row>
- <button id=analyzeBtn class=primary-btn>
- <svg><use href=#i-play></use></svg>
- 开始研判
- </button>
- <button id=clearBtn class=ghost-btn title=清空>
- <svg><use href=#i-trash></use></svg>
- </button>
- <button id=exportBtn class=ghost-btn title=导出报告>
- <svg><use href=#i-download></use></svg>
- </button>
- </div>
- </section>
- <section class=dashboard>
- <div class=score-strip>
- <article class="score-card wide">
- <div class=card-head>
- <span>次日市场温度</span>
- <svg><use href=#i-pulse></use></svg>
- </div>
- <div class=meter>
- <div id=meterNeedle class=meter-needle style="transform:translateX(-50%) rotate(31.32deg)"></div>
- <div class=meter-core>
- <strong id=marketScore>77</strong>
- <span id=marketTone>偏强进攻</span>
- </div>
- </div>
- <div id=marketSummary class=summary-line>政策线索 8.9，资金线索 1.1，风险线索 2；主线集中在 电力储能、消费、半导体。</div>
- </article>
- <article class=score-card>
- <div class=card-head><span>上涨</span><span id=upProb>52%</span></div>
- <div class=prob-bar><span id=upBar style=width:52%></span></div>
- <p id=upText>政策和产业线索共振，适合观察强势板块回踩承接。</p>
- </article>
- <article class=score-card>
- <div class=card-head><span>震荡</span><span id=flatProb>18%</span></div>
- <div class="prob-bar neutral"><span id=flatBar style=width:18%></span></div>
- <p id=flatText>震荡为次要情景，留意盘中分歧。</p>
- </article>
- <article class=score-card>
- <div class=card-head><span>回撤</span><span id=downProb>30%</span></div>
- <div class="prob-bar risk"><span id=downBar style=width:30%></span></div>
- <p id=downText>回撤更多来自短线拥挤，而非主线彻底逆转。</p>
- </article>
- </div>
- <div class=grid-two>
- <article class=panel>
- <div class="section-head compact">
- <div>
- <p class=eyebrow>Heat Map</p>
- <h2>龙头板块</h2>
- </div>
- </div>
- <div id=sectorBars class=sector-bars>
- <div class=sector-row>
- <div class=sector-name title=电力储能>电力储能</div>
- <div class=bar-track><span class=bar-fill style=width:100%;background:#4f7d2b></span></div>
- <div class=sector-score>100</div>
- </div>
- 
- <div class=sector-row>
- <div class=sector-name title=消费>消费</div>
- <div class=bar-track><span class=bar-fill style=width:100%;background:#8b4a7a></span></div>
- <div class=sector-score>100</div>
- </div>
- 
- <div class=sector-row>
- <div class=sector-name title=半导体>半导体</div>
- <div class=bar-track><span class=bar-fill style=width:64%;background:#087e8b></span></div>
- <div class=sector-score>64</div>
- </div>
- 
- <div class=sector-row>
- <div class=sector-name title=券商金融>券商金融</div>
- <div class=bar-track><span class=bar-fill style=width:42%;background:#c24136></span></div>
- <div class=sector-score>42</div>
- </div>
- 
- <div class=sector-row>
- <div class=sector-name title=机器人>机器人</div>
- <div class=bar-track><span class=bar-fill style=width:36%;background:#b16900></span></div>
- <div class=sector-score>36</div>
- </div>
- 
- <div class=sector-row>
- <div class=sector-name title=AI算力>AI算力</div>
- <div class=bar-track><span class=bar-fill style=width:29%;background:#1967d2></span></div>
- <div class=sector-score>29</div>
- </div>
- 
- <div class=sector-row>
- <div class=sector-name title=低空经济>低空经济</div>
- <div class=bar-track><span class=bar-fill style=width:29%;background:#168257></span></div>
- <div class=sector-score>29</div>
- </div>
- 
- <div class=sector-row>
- <div class=sector-name title=医药>医药</div>
- <div class=bar-track><span class=bar-fill style=width:29%;background:#2f7f72></span></div>
- <div class=sector-score>29</div>
- </div>
- 
- <div class=sector-row>
- <div class=sector-name title=新能源汽车>新能源汽车</div>
- <div class=bar-track><span class=bar-fill style=width:18%;background:#5551a6></span></div>
- <div class=sector-score>18</div>
- </div>
- 
- <div class=sector-row>
- <div class=sector-name title=有色资源>有色资源</div>
- <div class=bar-track><span class=bar-fill style=width:18%;background:#936d00></span></div>
- <div class=sector-score>18</div>
- </div>
- </div>
- </article>
- <article class=panel>
- <div class="section-head compact">
- <div>
- <p class=eyebrow>Catalysts</p>
- <h2>新闻热点</h2>
- </div>
- </div>
- <div id=hotTopics class=topic-list>
- <div class=topic-item>
- <span class=topic-dot></span>
- <div>
- <strong>新闻联播：国务院会议强调加快人工智能、低空经济、新型电力系统等战略性新兴产业发展，支持地方开展应用场景试点</strong>
- <div class=topic-meta>
- <span>关联板块：电力储能</span>
- </div>
- </div>
- <span class=chip>116</span>
- </div>
- 
- <div class=topic-item>
- <span class=topic-dot></span>
- <div>
- <strong>央视财经：多地发布以旧换新和服务消费活动方案，汽车、家电、文旅消费数据环比改善</strong>
- <div class=topic-meta>
- <span>关联板块：消费</span>
- </div>
- </div>
- <span class=chip>100</span>
- </div>
- 
- <div class=topic-item>
- <span class=topic-dot></span>
- <div>
- <strong>经济日报：新型储能、电网投资和虚拟电厂建设进入招标密集期，绿电消纳机制持续优化</strong>
- <div class=topic-meta>
- <span>关联板块：电力储能</span>
- </div>
- </div>
- <span class=chip>100</span>
- </div>
- 
- <div class=topic-item>
- <span class=topic-dot></span>
- <div>
- <strong>交易所公告：并购重组审核效率提升，半导体设备、创新药、国企改革方向披露多起产业整合案例</strong>
- <div class=topic-meta>
- <span>关联板块：半导体</span>
- </div>
- </div>
- <span class=chip>80</span>
- </div>
- 
- <div class=topic-item>
- <span class=topic-dot></span>
- <div>
- <strong>央行/发改委：保持流动性合理充裕，推动降低实体融资成本，继续支持科技创新和设备更新</strong>
- <div class=topic-meta>
- <span>关联板块：半导体</span>
- </div>
- </div>
- <span class=chip>80</span>
- </div>
- 
- <div class=topic-item>
- <span class=topic-dot></span>
- <div>
- <strong>焦点访谈：制造业数字化转型加速，人形机器人核心零部件国产化率提升</strong>
- <div class=topic-meta>
- <span>关联板块：机器人</span>
- </div>
- </div>
- <span class=chip>36</span>
- </div>
- 
- <div class=topic-item>
- <span class=topic-dot></span>
- <div>
- <strong>风险线索：部分高位题材成交拥挤，海外科技出口管制和大宗商品价格波动仍需跟踪</strong>
- <div class=topic-meta>
- <span>关联板块：有色资源</span>
- </div>
- </div>
- <span class=chip>6</span>
- </div>
- </div>
- </article>
- </div>
- <article class=panel>
- <div class="section-head compact">
- <div>
- <p class=eyebrow>Leader Pool</p>
- <h2>龙头股观察池</h2>
- </div>
- <div class=search-box>
- <svg><use href=#i-search></use></svg>
- <input id=stockFilter type=search placeholder=筛选板块或代码 value>
- </div>
- </div>
- <div class=table-wrap>
- <table>
- <thead>
- <tr>
- <th>板块</th>
- <th>候选龙头</th>
- <th>触发线索</th>
- <th>风险观察</th>
- <th>策略框架</th>
- </tr>
- </thead>
- <tbody id=leaderRows>
- <tr>
- <td><strong>电力储能</strong><br><span class=chip>热度 100</span></td>
- <td><div class=stock-tags><span class=stock-tag>阳光电源 300274</span><span class=stock-tag>宁德时代 300750</span><span class=stock-tag>国电南瑞 600406</span><span class=stock-tag>许继电气 000400</span></div></td>
- <td>电网投资、容量电价、消纳改善</td>
- <td>价格竞争、海外政策、装机节奏</td>
- <td>强催化方向；等待分歧承接和成交确认，避免无量高开追价。</td>
- </tr>
- 
- <tr>
- <td><strong>消费</strong><br><span class=chip>热度 100</span></td>
- <td><div class=stock-tags><span class=stock-tag>贵州茅台 600519</span><span class=stock-tag>美的集团 000333</span><span class=stock-tag>中国中免 601888</span><span class=stock-tag>海尔智家 600690</span></div></td>
- <td>促消费政策、假期数据、居民收入预期改善</td>
- <td>复苏弹性不足、估值修复慢、竞争加剧</td>
- <td>强催化方向；等待分歧承接和成交确认，避免无量高开追价。</td>
- </tr>
- 
- <tr>
- <td><strong>半导体</strong><br><span class=chip>热度 64</span></td>
- <td><div class=stock-tags><span class=stock-tag>中芯国际 688981</span><span class=stock-tag>北方华创 002371</span><span class=stock-tag>寒武纪 688256</span><span class=stock-tag>韦尔股份 603501</span></div></td>
- <td>自主可控、产业基金、设备材料突破</td>
- <td>周期复苏斜率、出口限制、业绩波动</td>
- <td>轮动候选；只看前排辨识度和业绩线索，降低持仓时间预期。</td>
- </tr>
- 
- <tr>
- <td><strong>券商金融</strong><br><span class=chip>热度 42</span></td>
- <td><div class=stock-tags><span class=stock-tag>中信证券 600030</span><span class=stock-tag>东方财富 300059</span><span class=stock-tag>华泰证券 601688</span><span class=stock-tag>同花顺 300033</span></div></td>
- <td>成交额放大、政策呵护、并购重组预期</td>
- <td>指数冲高回落、成交缩量、监管预期落空</td>
- <td>轮动候选；只看前排辨识度和业绩线索，降低持仓时间预期。</td>
- </tr>
- 
- <tr>
- <td><strong>机器人</strong><br><span class=chip>热度 36</span></td>
- <td><div class=stock-tags><span class=stock-tag>汇川技术 300124</span><span class=stock-tag>绿的谐波 688017</span><span class=stock-tag>鸣志电器 603728</span><span class=stock-tag>埃斯顿 002747</span></div></td>
- <td>新产品发布、制造业升级、核心零部件国产化</td>
- <td>量产节奏、商业化场景、主题交易过热</td>
- <td>低优先级；新闻强度不足，除非盘面主动放量转强。</td>
- </tr>
- 
- <tr>
- <td><strong>AI算力</strong><br><span class=chip>热度 29</span></td>
- <td><div class=stock-tags><span class=stock-tag>中际旭创 300308</span><span class=stock-tag>新易盛 300502</span><span class=stock-tag>浪潮信息 000977</span><span class=stock-tag>工业富联 601138</span></div></td>
- <td>政策扶持、资本开支扩张、国产替代订单</td>
- <td>估值拥挤、海外链条扰动、订单兑现不及预期</td>
- <td>低优先级；新闻强度不足，除非盘面主动放量转强。</td>
- </tr>
- 
- <tr>
- <td><strong>低空经济</strong><br><span class=chip>热度 29</span></td>
- <td><div class=stock-tags><span class=stock-tag>万丰奥威 002085</span><span class=stock-tag>宗申动力 001696</span><span class=stock-tag>中信海直 000099</span><span class=stock-tag>莱斯信息 688631</span></div></td>
- <td>地方试点、空域改革、基础设施招标</td>
- <td>审批进度、盈利模式、短线资金退潮</td>
- <td>低优先级；新闻强度不足，除非盘面主动放量转强。</td>
- </tr>
- 
- <tr>
- <td><strong>医药</strong><br><span class=chip>热度 29</span></td>
- <td><div class=stock-tags><span class=stock-tag>恒瑞医药 600276</span><span class=stock-tag>药明康德 603259</span><span class=stock-tag>迈瑞医疗 300760</span><span class=stock-tag>片仔癀 600436</span></div></td>
- <td>创新药出海、医保边际改善、老龄化需求</td>
- <td>集采降价、研发失败、海外合规</td>
- <td>低优先级；新闻强度不足，除非盘面主动放量转强。</td>
- </tr>
- </tbody>
- </table>
- </div>
- </article>
- <div class=grid-two>
- <article class=panel>
- <div class="section-head compact">
- <div>
- <p class=eyebrow>Trading Frame</p>
- <h2>操作建议</h2>
- </div>
- </div>
- <div id=tradePlan class=plan-box>
- <div class=plan-item>
- <strong>仓位节奏</strong>
- <span>研究口径可设为五至六成上限，先看开盘量能和前排承接，再决定是否增加暴露。</span>
- </div>
- 
- <div class=plan-item>
- <strong>主线选择</strong>
- <span>优先跟踪 电力储能、消费、半导体，只保留新闻催化、成交放大和行业龙头三项同时出现的标的。</span>
- </div>
- 
- <div class=plan-item>
- <strong>买卖纪律</strong>
- <span>避免一致性高开追价，等待回踩均线、分时缩量企稳或板块二次转强。</span>
- </div>
- </div>
- </article>
- <article class=panel>
- <div class="section-head compact">
- <div>
- <p class=eyebrow>Risk Controls</p>
- <h2>风控清单</h2>
- </div>
- </div>
- <div id=riskList class=risk-list>
- <div class=risk-item>
- <strong>外部扰动</strong>
- <span>出口管制、汇率和海外科技链波动会直接压制高估值成长板块。</span>
- </div>
- 
- <div class=risk-item>
- <strong>成交验证</strong>
- <span>次日若沪深两市成交额无法放大，热点持续性需要下调。</span>
- </div>
- 
- <div class=risk-item>
- <strong>前排分歧</strong>
- <span>龙头股高开低走或炸板扩散，说明资金从进攻转向兑现。</span>
- </div>
- 
- <div class=risk-item>
- <strong>政策兑现</strong>
- <span>新闻强度高但公告、订单和资金流没有跟进时，主题可能只适合短线观察。</span>
- </div>
- </div>
- </article>
- </div>
- </section>
- </main>
- </div>
- <script>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A股新闻热度研判台</title>
+    <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f7fa;
+  --panel: #ffffff;
+  --panel-soft: #eef3f8;
+  --ink: #16202a;
+  --muted: #687684;
+  --line: #dce3ea;
+  --blue: #1967d2;
+  --green: #168257;
+  --red: #c24136;
+  --amber: #b16900;
+  --cyan: #087e8b;
+  --shadow: 0 18px 45px rgba(30, 45, 62, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(25, 103, 210, 0.08), transparent 260px),
+    var(--bg);
+  color: var(--ink);
+  font-family:
+    Inter, "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  flex: 0 0 auto;
+}
+
+.svg-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.app {
+  width: min(1540px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 36px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 0 22px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.date-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.date-line span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.date-line span:last-child {
+  color: var(--blue);
+}
+
+.risk-note,
+.date-input,
+.search-box {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.risk-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  color: var(--red);
+  font-weight: 800;
+}
+
+.date-input {
+  padding: 0 12px;
+  color: var(--ink);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.input-panel,
+.panel,
+.score-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.input-panel {
+  position: sticky;
+  top: 16px;
+  padding: 18px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.section-head.compact {
+  margin-bottom: 12px;
+}
+
+.icon-btn,
+.ghost-btn,
+.secondary-btn,
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  border-radius: 8px;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.icon-btn,
+.ghost-btn {
+  width: 42px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.primary-btn {
+  flex: 1;
+  padding: 0 18px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 800;
+}
+
+.secondary-btn {
+  padding: 0 14px;
+  border: 1px solid rgba(25, 103, 210, 0.28);
+  background: rgba(25, 103, 210, 0.09);
+  color: var(--blue);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.icon-btn:hover,
+.ghost-btn:hover,
+.secondary-btn:hover,
+.primary-btn:hover {
+  transform: translateY(-1px);
+}
+
+.secondary-btn:disabled {
+  cursor: wait;
+  opacity: 0.66;
+  transform: none;
+}
+
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.source-tile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.source-tile input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--blue);
+}
+
+.source-tile:has(input:checked) {
+  border-color: rgba(25, 103, 210, 0.42);
+  background: rgba(25, 103, 210, 0.08);
+  color: var(--blue);
+}
+
+.field-label {
+  display: block;
+  margin: 8px 0 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+textarea {
+  width: 100%;
+  min-height: 420px;
+  resize: vertical;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: 0;
+  background: #fbfcfd;
+  color: var(--ink);
+  line-height: 1.62;
+}
+
+textarea:focus,
+.search-box:focus-within,
+.date-input:focus {
+  border-color: rgba(25, 103, 210, 0.7);
+  box-shadow: 0 0 0 3px rgba(25, 103, 210, 0.12);
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.dashboard {
+  display: grid;
+  gap: 18px;
+}
+
+.score-strip {
+  display: grid;
+  grid-template-columns: 1.25fr repeat(3, minmax(150px, 0.55fr));
+  gap: 12px;
+}
+
+.score-card {
+  padding: 16px;
+  min-height: 154px;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.card-head svg {
+  color: var(--blue);
+}
+
+.meter {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 112px;
+  margin-top: 6px;
+  border-radius: 8px;
+  background:
+    conic-gradient(from 225deg, var(--red), var(--amber), var(--green), transparent 0 360deg),
+    #eef2f6;
+  clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%);
+  overflow: hidden;
+}
+
+.meter::after {
+  content: "";
+  position: absolute;
+  inset: 18px 24px 0;
+  border-radius: 8px 8px 0 0;
+  background: var(--panel);
+}
+
+.meter-needle {
+  position: absolute;
+  z-index: 2;
+  bottom: 16px;
+  left: 50%;
+  width: 3px;
+  height: 72px;
+  background: var(--ink);
+  transform: translateX(-50%) rotate(-54deg);
+  transform-origin: bottom center;
+  border-radius: 3px;
+  transition: transform 0.35s ease;
+}
+
+.meter-core {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  align-self: end;
+  min-width: 112px;
+  padding: 11px 14px;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.meter-core strong {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.meter-core span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.summary-line {
+  min-height: 22px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.prob-bar {
+  height: 10px;
+  margin: 25px 0 14px;
+  border-radius: 999px;
+  background: #e9eef4;
+  overflow: hidden;
+}
+
+.prob-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--green);
+  transition: width 0.35s ease;
+}
+
+.prob-bar.neutral span {
+  background: var(--blue);
+}
+
+.prob-bar.risk span {
+  background: var(--red);
+}
+
+.score-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.panel {
+  padding: 18px;
+}
+
+.sector-bars {
+  display: grid;
+  gap: 10px;
+}
+
+.sector-row {
+  display: grid;
+  grid-template-columns: minmax(72px, 108px) minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+}
+
+.sector-name {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar-track {
+  height: 12px;
+  border-radius: 999px;
+  background: #e9eef4;
+  overflow: hidden;
+}
+
+.bar-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+}
+
+.sector-score {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-align: right;
+}
+
+.topic-list {
+  display: grid;
+  gap: 10px;
+  max-height: 306px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.topic-item {
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  gap: 10px;
+  align-items: start;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.topic-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.topic-item strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.source-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  margin-left: 6px;
+  border: 1px solid rgba(25, 103, 210, 0.35);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--blue);
+  cursor: pointer;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: text-top;
+}
+
+.source-mark:hover {
+  background: rgba(25, 103, 210, 0.1);
+}
+
+.topic-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.topic-item span,
+.chip {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.chip {
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel-soft);
+  white-space: nowrap;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(310px, 44vw);
+  padding: 0 11px;
+}
+
+.search-box input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 880px;
+}
+
+th,
+td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f7fafc;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+td {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.stock-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stock-tag {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(25, 103, 210, 0.08);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.plan-box,
+.risk-list {
+  display: grid;
+  gap: 10px;
+}
+
+.plan-item,
+.risk-item {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfd;
+}
+
+.plan-item strong,
+.risk-item strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.plan-item span,
+.risk-item span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.empty {
+  padding: 22px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 1180px) {
+  .workspace,
+  .score-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .input-panel {
+    position: static;
+  }
+
+  textarea {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 760px) {
+  .app {
+    width: min(100% - 20px, 1540px);
+    padding-top: 12px;
+  }
+
+  .topbar,
+  .top-actions,
+  .section-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .top-actions {
+    gap: 8px;
+  }
+
+  .grid-two,
+  .source-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .sector-row {
+    grid-template-columns: 92px minmax(0, 1fr) 38px;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="i-pulse" viewBox="0 0 24 24">
+        <path d="M3 12h4l2-6 4 12 3-7h5" />
+      </symbol>
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </symbol>
+      <symbol id="i-file" viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <path d="M14 2v6h6" />
+      </symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24">
+        <path d="M3 6h18" />
+        <path d="M8 6V4h8v2" />
+        <path d="M6 6l1 16h10l1-16" />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 3v12" />
+        <path d="M7 10l5 5 5-5" />
+        <path d="M5 21h14" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="M12 3 5 6v6c0 4.4 2.8 7.7 7 9 4.2-1.3 7-4.6 7-9V6z" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m16 16 5 5" />
+      </symbol>
+    </svg>
+
+    <div class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">China News Market Intelligence</p>
+          <h1>A股新闻热度研判台</h1>
+          <div class="date-line">
+            <span id="dateDisplay">--</span>
+            <span id="updateStatus">等待更新</span>
+          </div>
+        </div>
+        <div class="top-actions">
+          <div class="risk-note">
+            <svg><use href="#i-shield"></use></svg>
+            非投资建议
+          </div>
+          <input id="tradeDate" class="date-input" type="date" />
+          <button id="onlineBtn" class="secondary-btn">
+            <svg><use href="#i-download"></use></svg>
+            联网更新
+          </button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="input-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Daily Hotspots</p>
+              <h2>新闻热点</h2>
+            </div>
+            <button id="sampleBtn" class="icon-btn" title="载入示例">
+              <svg><use href="#i-file"></use></svg>
+            </button>
+          </div>
+
+          <div id="sourceGrid" class="source-grid" aria-label="新闻源"></div>
+
+          <label class="field-label" for="newsInput">热点素材（每日联网更新）</label>
+          <textarea id="newsInput" spellcheck="false"></textarea>
+
+          <div class="button-row">
+            <button id="analyzeBtn" class="primary-btn">
+              <svg><use href="#i-play"></use></svg>
+              开始研判
+            </button>
+            <button id="clearBtn" class="ghost-btn" title="清空">
+              <svg><use href="#i-trash"></use></svg>
+            </button>
+            <button id="exportBtn" class="ghost-btn" title="导出报告">
+              <svg><use href="#i-download"></use></svg>
+            </button>
+          </div>
+        </section>
+
+        <section class="dashboard">
+          <div class="score-strip">
+            <article class="score-card wide">
+              <div class="card-head">
+                <span>次日市场温度</span>
+                <svg><use href="#i-pulse"></use></svg>
+              </div>
+              <div class="meter">
+                <div id="meterNeedle" class="meter-needle"></div>
+                <div class="meter-core">
+                  <strong id="marketScore">--</strong>
+                  <span id="marketTone">等待研判</span>
+                </div>
+              </div>
+              <div id="marketSummary" class="summary-line">导入新闻后生成情景判断。</div>
+            </article>
+
+            <article class="score-card">
+              <div class="card-head"><span>上涨</span><span id="upProb">--</span></div>
+              <div class="prob-bar"><span id="upBar"></span></div>
+              <p id="upText">--</p>
+            </article>
+            <article class="score-card">
+              <div class="card-head"><span>震荡</span><span id="flatProb">--</span></div>
+              <div class="prob-bar neutral"><span id="flatBar"></span></div>
+              <p id="flatText">--</p>
+            </article>
+            <article class="score-card">
+              <div class="card-head"><span>回撤</span><span id="downProb">--</span></div>
+              <div class="prob-bar risk"><span id="downBar"></span></div>
+              <p id="downText">--</p>
+            </article>
+          </div>
+
+          <div class="grid-two">
+            <article class="panel">
+              <div class="section-head compact">
+                <div>
+                  <p class="eyebrow">Heat Map</p>
+                  <h2>龙头板块</h2>
+                </div>
+              </div>
+              <div id="sectorBars" class="sector-bars"></div>
+            </article>
+
+            <article class="panel">
+              <div class="section-head compact">
+                <div>
+                  <p class="eyebrow">Catalysts</p>
+                  <h2>新闻热点</h2>
+                </div>
+              </div>
+              <div id="hotTopics" class="topic-list"></div>
+            </article>
+          </div>
+
+          <article class="panel">
+            <div class="section-head compact">
+              <div>
+                <p class="eyebrow">Leader Pool</p>
+                <h2>龙头股观察池</h2>
+              </div>
+              <div class="search-box">
+                <svg><use href="#i-search"></use></svg>
+                <input id="stockFilter" type="search" placeholder="筛选板块或代码" />
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>板块</th>
+                    <th>候选龙头</th>
+                    <th>触发线索</th>
+                    <th>风险观察</th>
+                    <th>策略框架</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <div class="grid-two">
+            <article class="panel">
+              <div class="section-head compact">
+                <div>
+                  <p class="eyebrow">Trading Frame</p>
+                  <h2>操作建议</h2>
+                </div>
+              </div>
+              <div id="tradePlan" class="plan-box"></div>
+            </article>
+
+            <article class="panel">
+              <div class="section-head compact">
+                <div>
+                  <p class="eyebrow">Risk Controls</p>
+                  <h2>风控清单</h2>
+                </div>
+              </div>
+              <div id="riskList" class="risk-list"></div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
 const sources = [
   { id: "xinwen", name: "新闻联播", weight: 1.16 },
   { id: "fangtan", name: "焦点访谈", weight: 1.08 },
@@ -683,9 +1147,9 @@ function renderSources() {
     .map(
       (source) => `
         <label class="source-tile">
-          <input type="checkbox" value="${source.id}" checked \\/>
-          <span>${source.name}<\/span>
-        <\/label>
+          <input type="checkbox" value="${source.id}" checked />
+          <span>${source.name}</span>
+        </label>
       `,
     )
     .join("");
@@ -727,13 +1191,6 @@ function attachEvents() {
 
   elements.newsInput.addEventListener("input", debounce(analyze, 320));
   elements.sourceGrid.addEventListener("change", analyze);
-  elements.hotTopics.addEventListener("click", (event) => {
-    const mark = event.target.closest(".source-mark");
-    if (!mark) return;
-    const url = normalizeUrl(mark.dataset.url || "");
-    if (!url) return;
-    window.location.href = url;
-  });
 }
 
 function restoreDailyNews() {
@@ -1019,7 +1476,7 @@ function keywordScore(text, keywords) {
 }
 
 function countTerm(text, term) {
-  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\    <script src="./app.js"></script>");
   const matches = text.match(new RegExp(escaped, "gi"));
   return matches ? matches.length : 0;
 }
@@ -1168,11 +1625,11 @@ function renderEmptyState() {
   ["upProb", "flatProb", "downProb"].forEach((id) => (elements[id].textContent = "--"));
   ["upBar", "flatBar", "downBar"].forEach((id) => (elements[id].style.width = "0"));
   ["upText", "flatText", "downText"].forEach((id) => (elements[id].textContent = "--"));
-  elements.sectorBars.innerHTML = `<div class="empty">暂无板块热度<\/div>`;
-  elements.hotTopics.innerHTML = `<div class="empty">暂无新闻热点<\/div>`;
+  elements.sectorBars.innerHTML = `<div class="empty">暂无板块热度</div>`;
+  elements.hotTopics.innerHTML = `<div class="empty">暂无新闻热点</div>`;
   elements.leaderRows.innerHTML = "";
-  elements.tradePlan.innerHTML = `<div class="empty">暂无操作框架<\/div>`;
-  elements.riskList.innerHTML = `<div class="empty">暂无风控清单<\/div>`;
+  elements.tradePlan.innerHTML = `<div class="empty">暂无操作框架</div>`;
+  elements.riskList.innerHTML = `<div class="empty">暂无风控清单</div>`;
 }
 
 function renderResult(result) {
@@ -1219,10 +1676,10 @@ function renderSectorBars(rankedSectors) {
     .map(
       (sector) => `
         <div class="sector-row">
-          <div class="sector-name" title="${sector.name}">${sector.name}<\/div>
-          <div class="bar-track"><span class="bar-fill" style="width:${sector.score}%; background:${sector.color}"><\/span><\/div>
-          <div class="sector-score">${sector.score}<\/div>
-        <\/div>
+          <div class="sector-name" title="${sector.name}">${sector.name}</div>
+          <div class="bar-track"><span class="bar-fill" style="width:${sector.score}%; background:${sector.color}"></span></div>
+          <div class="sector-score">${sector.score}</div>
+        </div>
       `,
     )
     .join("");
@@ -1230,7 +1687,7 @@ function renderSectorBars(rankedSectors) {
 
 function renderTopics(topics) {
   if (!topics.length) {
-    elements.hotTopics.innerHTML = `<div class="empty">未识别到明确产业热点<\/div>`;
+    elements.hotTopics.innerHTML = `<div class="empty">未识别到明确产业热点</div>`;
     return;
   }
 
@@ -1238,18 +1695,25 @@ function renderTopics(topics) {
     .map(
       (topic) => `
         <div class="topic-item">
-          <span class="topic-dot"><\/span>
+          <span class="topic-dot"></span>
           <div>
-            <strong>${escapeHtml(topic.title)}${topic.url ? `<button class="source-mark" type="button" data-url="${escapeHtml(topic.url)}" title="打开原文" aria-label="打开原文">↗<\/button>` : ""}<\/strong>
+            <strong>${escapeHtml(topic.title)}${renderSourceAnchor(topic.url)}</strong>
             <div class="topic-meta">
-              <span>关联板块：${topic.sector}<\/span>
-            <\/div>
-          <\/div>
-          <span class="chip">${Math.max(Math.round(topic.weight), 1)}<\/span>
-        <\/div>
+              <span>关联板块：${topic.sector}</span>
+            </div>
+          </div>
+          <span class="chip">${Math.max(Math.round(topic.weight), 1)}</span>
+        </div>
       `,
     )
     .join("");
+}
+
+function renderSourceAnchor(url) {
+  const safeUrl = normalizeUrl(url || "");
+  if (!safeUrl) return "";
+  const escapedUrl = escapeHtml(safeUrl);
+  return `<a class="source-mark" href="${escapedUrl}" target="_blank" rel="noopener noreferrer" title="打开原文" aria-label="打开原文">↗</a>`;
 }
 
 function renderLeaderRows(rankedSectors) {
@@ -1263,7 +1727,7 @@ function renderLeaderRows(rankedSectors) {
     .slice(0, 8);
 
   if (!rows.length) {
-    elements.leaderRows.innerHTML = `<tr><td colspan="5" class="empty">没有匹配结果<\/td><\/tr>`;
+    elements.leaderRows.innerHTML = `<tr><td colspan="5" class="empty">没有匹配结果</td></tr>`;
     return;
   }
 
@@ -1271,12 +1735,12 @@ function renderLeaderRows(rankedSectors) {
     .map(
       (sector) => `
         <tr>
-          <td><strong>${sector.name}<\/strong><br><span class="chip">热度 ${sector.score}<\/span><\/td>
-          <td><div class="stock-tags">${sector.leaders.map((stock) => `<span class="stock-tag">${stock}<\/span>`).join("")}<\/div><\/td>
-          <td>${sector.catalyst}<\/td>
-          <td>${sector.risk}<\/td>
-          <td>${buildSectorStrategy(sector)}<\/td>
-        <\/tr>
+          <td><strong>${sector.name}</strong><br><span class="chip">热度 ${sector.score}</span></td>
+          <td><div class="stock-tags">${sector.leaders.map((stock) => `<span class="stock-tag">${stock}</span>`).join("")}</div></td>
+          <td>${sector.catalyst}</td>
+          <td>${sector.risk}</td>
+          <td>${buildSectorStrategy(sector)}</td>
+        </tr>
       `,
     )
     .join("");
@@ -1293,9 +1757,9 @@ function renderPlan(items) {
     .map(
       ([title, body]) => `
         <div class="plan-item">
-          <strong>${title}<\/strong>
-          <span>${body}<\/span>
-        <\/div>
+          <strong>${title}</strong>
+          <span>${body}</span>
+        </div>
       `,
     )
     .join("");
@@ -1306,9 +1770,9 @@ function renderRisks(items) {
     .map(
       ([title, body]) => `
         <div class="risk-item">
-          <strong>${title}<\/strong>
-          <span>${body}<\/span>
-        <\/div>
+          <strong>${title}</strong>
+          <span>${body}</span>
+        </div>
       `,
     )
     .join("");
@@ -1448,4 +1912,5 @@ function escapeHtml(value) {
 }
 
     </script>
- 
+  </body>
+</html>
