@@ -1476,7 +1476,7 @@ function keywordScore(text, keywords) {
 }
 
 function countTerm(text, term) {
-  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\    <script src="./app.js"></script>");
+  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const matches = text.match(new RegExp(escaped, "gi"));
   return matches ? matches.length : 0;
 }
