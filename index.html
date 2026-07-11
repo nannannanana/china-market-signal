@@ -539,6 +539,19 @@ textarea:focus,
   line-height: 1.35;
 }
 
+.topic-source {
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.topic-time {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .source-mark {
   display: inline-flex;
   align-items: center;
@@ -1631,8 +1644,11 @@ function buildTopics(sentences, rankedSectors) {
     const weight = matched.score + (includesAny(sentence, positiveKeywords) ? 16 : 0) - (includesAny(sentence, riskKeywords) ? 12 : 0);
     const link = extractLink(sentence);
     const cleanSentence = cleanNewsSentence(sentence);
+    const display = parseTopicDisplay(cleanSentence);
     topics.push({
-      title: cleanSentence.length > 58 ? `${cleanSentence.slice(0, 58)}...` : cleanSentence,
+      title: display.headline.length > 46 ? `${display.headline.slice(0, 46)}...` : display.headline,
+      source: display.source,
+      timeText: display.timeText,
       sector: matched.name,
       url: link,
       timeValue: extractNewsTime(sentence),
@@ -1653,6 +1669,24 @@ function buildTopics(sentences, rankedSectors) {
     });
 
   return deduped.slice(0, 9);
+}
+
+function parseTopicDisplay(text) {
+  const normalized = text.replace(/^\s*\d+\.\s*/, "").trim();
+  const match = normalized.match(/^(\d{4}-\d{1,2}-\d{1,2}\s+\d{1,2}:\d{2}(?::\d{2})?)\s*｜\s*([^：:]+)[：:]\s*(.+)$/);
+  if (!match) {
+    return {
+      source: "",
+      headline: normalized,
+      timeText: "",
+    };
+  }
+
+  return {
+    source: match[2].trim(),
+    headline: match[3].trim(),
+    timeText: match[1].trim(),
+  };
 }
 
 function extractNewsTime(text) {
@@ -1788,7 +1822,11 @@ function renderTopics(topics) {
         <div class="topic-item">
           <span class="topic-dot"></span>
           <div>
-            <strong>${escapeHtml(topic.title)}${renderSourceAnchor(topic.url)}</strong>
+            <strong>
+              ${topic.source ? `<span class="topic-source">${escapeHtml(topic.source)}：</span>` : ""}
+              ${escapeHtml(topic.title)}${renderSourceAnchor(topic.url)}
+              ${topic.timeText ? `<span class="topic-time">${escapeHtml(topic.timeText)}</span>` : ""}
+            </strong>
             <div class="topic-meta">
               <span>关联板块：${topic.sector}</span>
             </div>
