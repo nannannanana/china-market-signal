@@ -799,8 +799,8 @@ tbody tr:last-child td {
 
 @media (max-width: 760px) {
   .app {
-    width: min(100% - 20px, 1540px);
-    padding-top: 12px;
+    width: min(100% - 16px, 1540px);
+    padding: 10px 0 calc(24px + env(safe-area-inset-bottom));
   }
 
   .topbar,
@@ -811,12 +811,176 @@ tbody tr:last-child td {
   }
 
   .top-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 1.12;
+  }
+
+  h2 {
+    font-size: 17px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+  .date-line {
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .date-line span {
+    min-height: 26px;
+    padding: 0 8px;
+  }
+
+  .risk-note {
+    min-height: 38px;
+    grid-column: 1 / -1;
+  }
+
+  .date-input,
+  .secondary-btn {
+    min-height: 40px;
+    width: 100%;
+  }
+
+  .workspace,
+  .dashboard {
+    gap: 12px;
+  }
+
+  .input-panel,
+  .panel,
+  .score-card {
+    padding: 12px;
+  }
+
+  .section-head {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .section-head.compact {
+    margin-bottom: 10px;
+  }
+
+  .score-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .score-card {
+    min-height: 116px;
+  }
+
+  .score-card.wide {
+    grid-column: 1 / -1;
+  }
+
+  .card-head {
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .meter {
+    height: 92px;
+  }
+
+  .meter::after {
+    inset: 14px 20px 0;
+  }
+
+  .meter-needle {
+    height: 56px;
+    bottom: 14px;
+  }
+
+  .meter-core {
+    min-width: 96px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+  }
+
+  .meter-core strong {
+    font-size: 28px;
+  }
+
+  .prob-bar {
+    height: 8px;
+    margin: 18px 0 10px;
+  }
+
+  .score-card p,
+  .summary-line {
+    font-size: 12px;
   }
 
   .grid-two,
   .source-grid {
     grid-template-columns: 1fr;
+  }
+
+  .topic-list,
+  .report-list {
+    max-height: none;
+  }
+
+  .main-topic-list {
+    min-height: 0;
+    max-height: none;
+  }
+
+  .topic-item {
+    grid-template-columns: 7px minmax(0, 1fr) 36px;
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .topic-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .topic-item strong {
+    font-size: 13px;
+    line-height: 1.42;
+  }
+
+  .topic-time {
+    display: block;
+    margin: 4px 0 0;
+  }
+
+  .chip {
+    padding: 4px 7px;
+    font-size: 11px;
+  }
+
+  .report-item,
+  .plan-item,
+  .risk-item {
+    padding: 10px;
+  }
+
+  .report-topline {
+    gap: 8px;
+  }
+
+  .report-item h3 {
+    font-size: 13px;
+  }
+
+  .report-item p,
+  .plan-item span,
+  .risk-item span {
+    font-size: 12px;
   }
 
   .search-box {
@@ -825,6 +989,97 @@ tbody tr:last-child td {
 
   .sector-row {
     grid-template-columns: 92px minmax(0, 1fr) 38px;
+  }
+
+  .table-wrap {
+    border: 0;
+    overflow: visible;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+  }
+
+  table {
+    min-width: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  tr {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fbfcfd;
+    overflow: hidden;
+  }
+
+  td {
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1fr);
+    gap: 8px;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+  }
+
+  td:last-child {
+    border-bottom: 0;
+  }
+
+  td::before {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  td:nth-child(1)::before {
+    content: "板块";
+  }
+
+  td:nth-child(2)::before {
+    content: "候选";
+  }
+
+  td:nth-child(3)::before {
+    content: "线索";
+  }
+
+  td:nth-child(4)::before {
+    content: "风险";
+  }
+
+  td:nth-child(5)::before {
+    content: "策略";
+  }
+
+  .stock-tag {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 390px) {
+  .score-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .score-card {
+    min-height: 100px;
+  }
+
+  .sector-row {
+    grid-template-columns: 82px minmax(0, 1fr) 34px;
   }
 }
 
